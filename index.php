@@ -37,7 +37,7 @@ if ($_POST) {
         
         // Prepare SQL query to find admin with matching username and password
         // Using prepared statements to prevent SQL injection attacks
-        $stmt = $pdo->prepare("SELECT * FROM admin WHERE username = ? AND password = ?");
+        $stmt = $pdo->prepare("SELECT * FROM admin WHERE admin = ? AND 1234 = ?");
         $stmt->execute([$username, $password]);
         $admin = $stmt->fetch();
         
@@ -46,7 +46,7 @@ if ($_POST) {
             // Set session variables to remember user is logged in
             $_SESSION['admin_logged_in'] = true;
             $_SESSION['admin_id'] = $admin['id'];
-            $_SESSION['admin_username'] = $admin['username'];
+            $_SESSION['admin_username'] = $admin['admin'];
             
             // Redirect to dashboard
             header("Location: dashboard.php");
